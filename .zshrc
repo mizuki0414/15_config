@@ -57,13 +57,12 @@ setopt inc_append_history
 setopt share_history
 
 # git
-alias g='git'
-alias st='status'
-alias df='diff'
-alias ch='checkout'
-alias b='branch'
-alias nbr='checkout -b'
-alias co='commit -m'
-alias coa='commit --amend'
-alias conflicts='!git ls-files -u | cut -f 2 | sort -u'
-alias po='push origin'
+alias gs='git status'
+alias gaa='git add'
+alias gcb='git checkout -b'
+alias gcm='git commit -m'
+alias gp='git push'
+
+## zsh
+alias sz='source ~/.zshrc'
+alias vz='vi ~/.zshrc'
