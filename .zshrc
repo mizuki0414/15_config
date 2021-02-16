@@ -25,8 +25,21 @@ function peco-get-destination-from-cdr() {
   peco --query "$LBUFFER"
 }
 
+# ec2ls ctrl-eにバインド
+function peco-ec2ls () {
+    local selected_host=$(ec2ls | expand | peco --layout=bottom-up --query "$LBUFFER" | awk '{print $6}')
+    if [ -n "$selected_host" ]; then
+        BUFFER="ssh ${selected_host}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N peco-ec2ls
+bindkey '^e' peco-ec2ls
 
-### 過去に移動したことのあるディレクトリを選択。ctrl-uにバインド
+
+
+# 過去に移動したことのあるディレクトリを選択。ctrl-uにバインド
 function peco-cdr() {
   local destination="$(peco-get-destination-from-cdr)"
   if [ -n "$destination" ]; then
@@ -66,3 +79,7 @@ alias gp='git push'
 ## zsh
 alias sz='source ~/.zshrc'
 alias vz='vi ~/.zshrc'
+
+## go
+export GOPATH=$(go env GOPATH)
+export PATH=$PATH:$GOPATH/bin
