@@ -6,7 +6,7 @@ eval "$(starship init zsh)"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export LSCOLORS=gxfxcxdxbxegedabagacad
-alias ls='ls -G'
+alias ls='ls -G -a'
 
 # peco settings
 # 過去に実行したコマンドを選択。ctrl-rにバインド
@@ -25,7 +25,7 @@ function peco-get-destination-from-cdr() {
   peco --query "$LBUFFER"
 }
 
-# ec2ls ctrl-eにバインド
+# ec2ls ctrl-fにバインド
 function peco-ec2ls () {
     local selected_host=$(ec2ls | expand | peco --layout=bottom-up --query "$LBUFFER" | awk '{print $6}')
     if [ -n "$selected_host" ]; then
@@ -35,7 +35,7 @@ function peco-ec2ls () {
     zle clear-screen
 }
 zle -N peco-ec2ls
-bindkey '^e' peco-ec2ls
+bindkey '^f' peco-ec2ls
 
 
 
