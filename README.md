@@ -1,3 +1,3 @@
 # 15_config
-.zshrc
+.zshrc  
 .vimrc
